@@ -1,0 +1,68 @@
+﻿CREATE TABLE artifact (
+id INT UNIQUE NOT NULL, 
+dimension_in_cm VARCHAR(50), 
+weight_in gram FLOAT,
+material VARCHAR(10), 
+storage_humidity_percentage FLOAT, 
+PRIMARY KEY(id));
+
+CREATE TABLE employee (
+FirstName VARCHAR(50), 
+LastName VARCHAR(50), 
+sin INT UNIQUE NOT NULL, 
+Address VARCHAR(50), 
+phone INT, 
+salary_per_hour FLOAT, 
+Material_expertise VARCHAR(20),
+ job_title VARCHAR(50), 
+union_number INT UNIQUE NOT NULL,
+ PRIMARY KEY(sin, union_number));
+
+CREATE TABLE ministry_test(
+test_number INT UNIQUE NOT NULL, 
+test_name VARCHAR(50), 
+max_score INT, 
+date DATE,
+ hours_testing FLOAT, 
+score_received FLOAT,
+testerID INT, 
+artifactID INT,
+PRIMARY KEY(test_number), 
+FOREIGN KEY (testerID) REFERENCES Employee(union_number), 
+FOREIGN KEY (artifactID) REFERENCES artifact(id) );
+
+INSERT INTO artifact VALUES
+(1,’3x2x3’,0.3,’Gold’,80),
+(2,’5x4x32’,0.5,’Silver’,70),
+(3,’3x4x2’,3.5,’Wood’,80),
+(4,’5x9x17’,19.5,’Steel’,95),
+(5,’7x2x1’,1.5,’Paper’,50),
+(6,’2x2x3’,2.7,’Diamond’,90),
+(7,’5x6x9’,10.7,’Copper’,40),
+(8,’15x26x9’,30.1,’Wood’,75),
+(9,’5x16x7’,7.4,’Titanium’,95),
+(10,’7x4x5’,3.4,’Gold’,97);
+
+INSERT INTO employee VALUES
+(‘david’,10,100,’50 Burrard’,123456,20,’Gold’,’restorer’,’beckham’),
+(‘donald’,11,101,’10 Hastings’,987654,10,’Gold’,’guide’,’trump’),
+(‘angela’,12,102,’15 Cambie’,4569873,35,’silver’,’conservationist’,’merkel’),
+(‘emmanuel’ ,13,103 ,’75 Frances,453217,31,’wood’,‘restorer’,‘macron’),
+ (‘xi’,14,104,’25 Main’,983217,15,’tinanium’, ‘guide’,‘jinping’),
+ (‘justin’,15,105,’91 Main’,987787,25,’diamond’,’restorer’,’trudeau’),
+ (‘shinzo’,16,106,’91 Broadway’,989627,35,’paper’,’conservationist’,’abe’),
+ (‘theresa’,17,107,’21 Curtis’,3589627,15,’wood’,’conservationist’,’may’),
+ (‘vladimir’,18,108,’51 Sperling’,3587597,25,’copper’,’restorer’,’putin’),
+ (‘cristiano’,19,109,’23 Duthie’,9297597,27,’silver’,’guide’,’ronaldo’);
+
+INSERT INTO ministry_test VALUES
+ (1,’screening’,100,’2018-02-03’,1,75,10,1),
+ (2,’receiving check’,100,’2018-02-02’,0.5,95,11,6),
+ (3,’selling check’,100,’2018-02-01’,2,75,12,2),
+ (4,’stress test’,100,’2018-01-30’,1.5,85,13,8),
+ (5,’screening’,100,’2018-01-29’,0.5,55,14,9),
+ (6,’selling check’,100,’2018-01-28’,3.5,95,18,7),
+ (7,’receiving check’,100,’2018-01-27’,1,47,19,2),
+ (8,’regula check’,100,’2018-01-25’,2,87,15,6),
+ (9,’stress test’,100,’2018-01-24’,2,97,17,8),
+ (10,’stress test’,100,’2018-01-20’,2.5,87,16,5);

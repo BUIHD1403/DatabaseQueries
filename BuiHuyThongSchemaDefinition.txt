@@ -1,0 +1,25 @@
+﻿Artifact(id INT UNIQUE NOT NULL, dimension_in_cm VARCHAR(50), weight_in gram FLOAT, material VARCHAR(10), storage_humidity_percentage FLOAT, PRIMARY KEY(id))
+Keys of Artifact: PRIMARY KEY (id)
+Explanation: This stores information of all artifacts; 
+Id: is a unique number for each artifact.
+dimension_in_cm (in 3D with symbol ‘x’), material: consist of characters
+storage_humidity_percentage, weight_in gram: can have decimal part 
+
+Employee(FirstName VARCHAR(50), LastName VARCHAR(50), sin INT UNIQUE NOT NULL, Address VARCHAR(50), phone INT, salary_per_hour FLOAT, material_expertise VARCHAR(20), job_title VARCHAR(50), union_number INT UNIQUE NOT NULL, PRIMARY KEY(sin, union_number))
+Keys of relation: PRIMARY KEY (sin, union_number)
+Explanation: This stores information of all employee including technicianS and guides; 
+FirstName, LastName, Address, Material_expertise, Job_title: consist of characters
+salary_per_hour: can have decimal part 
+sin, union_number: each employee has their own number 
+ 
+Ministry_test(test_number INT UNIQUE NOT NULL, test_name VARCHAR(50), max_score INT, date DATE, hours_testing FLOAT, score_received FLOAT, testerid INT, artifactid INT, PRIMARY KEY(test_number), FOREIGN KEY (testerid) REFERENCES Employee(union_number), FOREIGN KEY (artifactid) REFERENCES artifact(id))
+Keys of relation: PRIMARY KEY(test_number), FOREIGN KEY(testerid, artifactid)
+Explanation: This stores information of each test perfomed; 
+test_number: is an unique number for each test 
+max_score: highest mark the test can achieve
+date: using date format 
+test_name: consist of characters
+hours_testing, score_received: can have decimal part 
+testerid: refers to ‘sin’ of Employee table to know who performed the test
+artifactid:  refers to ‘id’ of Artifact to know which artifact is checked
+
